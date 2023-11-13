@@ -63,11 +63,10 @@ class CityWeatherViewModel : ViewModel() {
                             tvFeelsLike.text = "Feel like ${data.main.feels_like}°C"
                             tvStatus.text = data.weather[0].description
 
-                            Log.d(
-                                "sunrise and sunset",
-                                "${data.sys.sunrise} and ${data.sys.sunset} "
-                            )
-
+//                            Log.d(
+//                                "sunrise and sunset",
+//                                "${data.sys.sunrise} and ${data.sys.sunset} "
+//                            )
                             getPollution(
                                 data.coord.lat,
                                 data.coord.lon,
