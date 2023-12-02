@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.10" />
+            app:layout_constraintGuide_begin="72dp" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -56,26 +56,25 @@
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
-            <androidx.cardview.widget.CardView
-                app:cardElevation="8dp"
-                android:layout_margin="16dp"
-                android:id="@+id/cardSearch"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardBackgroundColor="@color/semi_transparent"
-                app:cardCornerRadius="10dp">
+<!--            <androidx.cardview.widget.CardView-->
+<!--                app:cardElevation="8dp"-->
+<!--                android:layout_margin="16dp"-->
+<!--                android:id="@+id/cardSearch"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:cardBackgroundColor="@color/semi_transparent"-->
+<!--                app:cardCornerRadius="10dp">-->
 
-                <androidx.appcompat.widget.SearchView
-                    android:id="@+id/searchView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:iconifiedByDefault="false"
-                    app:queryHint="Search here...." />
+<!--                <androidx.appcompat.widget.SearchView-->
+<!--                    android:id="@+id/searchView"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    app:iconifiedByDefault="false"-->
+<!--                    app:queryHint="Search here...." />-->
 
-            </androidx.cardview.widget.CardView>
+<!--            </androidx.cardview.widget.CardView>-->
 
         </LinearLayout>
-
 
 
         <androidx.constraintlayout.widget.Guideline
@@ -83,7 +82,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.40" />
+            app:layout_constraintGuide_begin="294dp" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
@@ -177,7 +176,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.72" />
+            app:layout_constraintGuide_begin="530dp" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
@@ -455,27 +454,27 @@
 
         </androidx.cardview.widget.CardView>
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/glMainForecastBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_end="71dp" />
+<!--        <androidx.constraintlayout.widget.Guideline-->
+<!--            android:id="@+id/glMainForecastBtn"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            app:layout_constraintGuide_begin="674dp" />-->
 
-        <TextView
-            android:id="@+id/tv_forecast"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="0dp"
-            android:padding="5dp"
-            android:text="@string/five_days_forecast"
-            android:textSize="18sp"
-            app:drawableBottomCompat="@drawable/ic_down"
-            app:layout_constraintBottom_toTopOf="@+id/glMainForecastBtn"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/glMainForecastBtn" />
+<!--        <TextView-->
+<!--            android:id="@+id/tv_forecast"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_marginTop="0dp"-->
+<!--            android:padding="5dp"-->
+<!--            android:text="@string/five_days_forecast"-->
+<!--            android:textSize="18sp"-->
+<!--            app:drawableBottomCompat="@drawable/ic_down"-->
+<!--            app:layout_constraintBottom_toTopOf="@+id/glMainForecastBtn"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/glMainForecastBtn" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

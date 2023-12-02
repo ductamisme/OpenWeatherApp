@@ -2,6 +2,7 @@ package com.aicontent.openweather
 
 import android.Manifest
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
@@ -18,7 +19,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.aicontent.openweather.databinding.BottomSheetLayoutBinding
 import com.aicontent.openweather.databinding.FragmentCityWeatherBinding
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -30,30 +30,29 @@ import java.util.Locale
 class CityWeatherFragment : Fragment() {
 
     private lateinit var binding: FragmentCityWeatherBinding
-
     private lateinit var sheetLayoutBinding: BottomSheetLayoutBinding
-
     private lateinit var dialog: BottomSheetDialog
-
     private var city: String = "ha noi"
-
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
-
-    lateinit var pollutionFragment: PollutionFragment
+    private lateinit var pollutionFragment: PollutionFragment
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentCityWeatherBinding.inflate(layoutInflater)
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireContext())
+        fusedLocationProviderClient =
+            LocationServices.getFusedLocationProviderClient(requireContext())
 
         val viewModel = ViewModelProvider(this)[CityWeatherViewModel::class.java]
-        val navController = findNavController()
+//        val navController = findNavController
+//
+//        val intent = Intent(activity, CityWeatherFragment::class.java)
+//        startActivity(intent)
 
         pollutionFragment = PollutionFragment()
 
-        fetchLocation( viewModel = viewModel)
+        fetchLocation(viewModel = viewModel)
         viewModel.getCurrentWeather(
             context = requireContext(),
             binding = binding,
@@ -64,37 +63,36 @@ class CityWeatherFragment : Fragment() {
         dialog = BottomSheetDialog(requireContext(), R.style.BottomSheetTheme)
         dialog.setContentView(sheetLayoutBinding.root)
 
-        binding.tvForecast.setOnClickListener {
-            openDialog(viewModel = viewModel)
-        }
-
+//        binding.tvForecast.setOnClickListener {
+//            openDialog(viewModel = viewModel)
+//        }
         binding.tvLocation.setOnClickListener {
-            fetchLocation( viewModel = viewModel)
+            fetchLocation(viewModel = viewModel)
         }
 
-        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                if (query != null) {
-                    city = query
-                }
-                viewModel.getCurrentWeather(
-                    context = requireContext(),
-                    binding = binding,
-                    city = city,
-                )
-                return true
-            }
-            override fun onQueryTextChange(newText: String?): Boolean {
-                return false
-            }
-        })
-
+//        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+//            override fun onQueryTextSubmit(query: String?): Boolean {
+//                if (query != null) {
+//                    city = query
+//                }
+//                viewModel.getCurrentWeather(
+//                    context = requireContext(),
+//                    binding = binding,
+//                    city = city,
+//                )
+//                return true
+//            }
+//
+//            override fun onQueryTextChange(newText: String?): Boolean {
+//                return false
+//            }
+//        })
         // Inflate the layout for this fragment
         return binding.root
     }
 
     private fun fetchLocation(viewModel: CityWeatherViewModel) {
-        val task : Task<Location> =             fusedLocationProviderClient.lastLocation
+        val task: Task<Location> = fusedLocationProviderClient.lastLocation
 
         if (ActivityCompat.checkSelfPermission(
                 requireContext(),
@@ -117,11 +115,13 @@ class CityWeatherFragment : Fragment() {
         task.addOnSuccessListener {
             val geocoder = Geocoder(requireContext(), Locale.getDefault())
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
-                geocoder.getFromLocation(it.latitude,it.longitude,1
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                geocoder.getFromLocation(
+                    it.latitude, it.longitude, 1
                 ) { addresses -> city = addresses[0].locality }
-            }else{
-                val address = geocoder.getFromLocation(it.latitude, it.longitude, 1) as List<Address>
+            } else {
+                val address =
+                    geocoder.getFromLocation(it.latitude, it.longitude, 1) as List<Address>
 
                 city = address[0].locality
             }

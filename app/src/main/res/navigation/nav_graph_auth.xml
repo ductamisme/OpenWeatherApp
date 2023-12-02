@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_auth"
+    app:startDestination="@id/mainAuthenticationFragment">
+    <fragment
+        android:id="@+id/mainAuthenticationFragment"
+        android:name="com.aicontent.openweather.MainAuthenticationFragment"
+        android:label="fragment_main_authentication"
+        tools:layout="@layout/fragment_main_authentication" >
+        <action
+            android:id="@+id/action_mainAuthenticationFragment_to_loginFragment3"
+            app:destination="@id/loginFragment3" />
+        <action
+            android:id="@+id/action_mainAuthenticationFragment_to_signUpFragment3"
+            app:destination="@id/signUpFragment3" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment3"
+        android:name="com.aicontent.openweather.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment3_to_signUpFragment3"
+            app:destination="@id/signUpFragment3" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFragment3"
+        android:name="com.aicontent.openweather.SignUpFragment"
+        android:label="fragment_sign_up"
+        tools:layout="@layout/fragment_sign_up" >
+        <action
+            android:id="@+id/action_signUpFragment3_to_loginFragment3"
+            app:destination="@id/loginFragment3" />
+    </fragment>
+</navigation>

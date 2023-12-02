@@ -26,7 +26,6 @@ class PollutionFragment : Fragment() {
     ): View {
         binding = FragmentPollutionBinding.inflate(layoutInflater)
 
-
         return binding.root
     }
 

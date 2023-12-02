@@ -9,7 +9,7 @@
         android:id="@+id/mainFragment"
         android:name="com.aicontent.openweather.PollutionFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_pollution" >
+        tools:layout="@layout/fragment_pollution">
         <action
             android:id="@+id/action_mainFragment_to_cityWeatherFragment"
             app:destination="@id/cityWeatherFragment" />
@@ -18,9 +18,16 @@
         android:id="@+id/cityWeatherFragment"
         android:name="com.aicontent.openweather.CityWeatherFragment"
         android:label="fragment_city_weather"
-        tools:layout="@layout/fragment_city_weather" >
+        tools:layout="@layout/fragment_city_weather">
         <action
             android:id="@+id/action_cityWeatherFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_cityWeatherFragment_to_search"
+            app:destination="@id/search" />
     </fragment>
+    <fragment
+        android:id="@+id/search"
+        android:name="com.aicontent.openweather.search.Search"
+        android:label="Search" />
 </navigation>
