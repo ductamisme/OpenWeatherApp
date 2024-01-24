@@ -13,3 +13,13 @@ object RetrofitInstance {
             .create(ApiInterface::class.java)
     }
 }
+
+object RetrofitInstanceCountry {
+    val api: ApiInterface by lazy {
+        Retrofit.Builder()
+            .baseUrl(Utils.baseCountryUrl)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(ApiInterface::class.java)
+    }
+}

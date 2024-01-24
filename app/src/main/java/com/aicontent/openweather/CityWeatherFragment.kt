@@ -1,8 +1,6 @@
 package com.aicontent.openweather
 
 import android.Manifest
-import android.content.Context
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
@@ -12,19 +10,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.SearchView
+import android.widget.SearchView
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.room.Room
 import com.aicontent.openweather.databinding.BottomSheetLayoutBinding
 import com.aicontent.openweather.databinding.FragmentCityWeatherBinding
+import com.aicontent.openweather.search.SearchEntity
+import com.aicontent.openweather.search.SearchHistoryDatabase
+import com.aicontent.openweather.viewmodel.CityWeatherViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.Task
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import kotlinx.coroutines.launch
 import java.util.Locale
 
 class CityWeatherFragment : Fragment() {
@@ -35,7 +37,7 @@ class CityWeatherFragment : Fragment() {
     private var city: String = "ha noi"
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private lateinit var pollutionFragment: PollutionFragment
-
+    private lateinit var viewModel: CityWeatherViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -44,7 +46,11 @@ class CityWeatherFragment : Fragment() {
         fusedLocationProviderClient =
             LocationServices.getFusedLocationProviderClient(requireContext())
 
-        val viewModel = ViewModelProvider(this)[CityWeatherViewModel::class.java]
+        viewModel = ViewModelProvider(
+            this,
+            ViewModelProvider.AndroidViewModelFactory(requireActivity().application)
+        )[CityWeatherViewModel::class.java]
+
 //        val navController = findNavController
 //
 //        val intent = Intent(activity, CityWeatherFragment::class.java)
@@ -69,24 +75,31 @@ class CityWeatherFragment : Fragment() {
         binding.tvLocation.setOnClickListener {
             fetchLocation(viewModel = viewModel)
         }
-
-//        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-//            override fun onQueryTextSubmit(query: String?): Boolean {
-//                if (query != null) {
-//                    city = query
-//                }
-//                viewModel.getCurrentWeather(
-//                    context = requireContext(),
-//                    binding = binding,
-//                    city = city,
-//                )
-//                return true
-//            }
+//        val weatherDao = db.searchDao()
 //
-//            override fun onQueryTextChange(newText: String?): Boolean {
-//                return false
-//            }
-//        })
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if (query != null) {
+                    city = query
+//                    viewModel.addUser(
+//                        SearchEntity(
+//                            name = query
+//                        )
+//                    )
+                }
+                viewModel.getCurrentWeather(
+                    context = requireContext(),
+                    binding = binding,
+                    city = city,
+                )
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return false
+            }
+        })
         // Inflate the layout for this fragment
         return binding.root
     }

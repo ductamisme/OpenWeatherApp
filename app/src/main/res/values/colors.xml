@@ -12,6 +12,6 @@
     <color name="yellow">#FFC801</color>
     <color name="themeAuthentication">#FF102C57</color>
     <color name="buttonAuthentication">#FFDAC0A3</color>
-
+    <color name="main_background">#48319D</color>
 
 </resources>

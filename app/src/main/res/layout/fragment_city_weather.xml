@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/background"
+    android:background="@drawable/star_sky"
     tools:context=".CityWeatherFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -56,23 +56,23 @@
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
-<!--            <androidx.cardview.widget.CardView-->
-<!--                app:cardElevation="8dp"-->
-<!--                android:layout_margin="16dp"-->
-<!--                android:id="@+id/cardSearch"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                app:cardBackgroundColor="@color/semi_transparent"-->
-<!--                app:cardCornerRadius="10dp">-->
+            <androidx.cardview.widget.CardView
+                app:cardElevation="8dp"
+                android:layout_margin="16dp"
+                android:id="@+id/cardSearch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/main_background"
+                app:cardCornerRadius="10dp">
 
-<!--                <androidx.appcompat.widget.SearchView-->
-<!--                    android:id="@+id/searchView"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    app:iconifiedByDefault="false"-->
-<!--                    app:queryHint="Search here...." />-->
+                <androidx.appcompat.widget.SearchView
+                    android:id="@+id/searchView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:iconifiedByDefault="false"
+                    app:queryHint="Search here...." />
 
-<!--            </androidx.cardview.widget.CardView>-->
+            </androidx.cardview.widget.CardView>
 
         </LinearLayout>
 
@@ -155,7 +155,8 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/tv_temp"
                 app:layout_constraintTop_toTopOf="@+id/tv_temp"
-                app:srcCompat="@drawable/humidity" />
+                app:srcCompat="@drawable/humidity"
+                android:contentDescription="oke" />
 
             <TextView
                 android:id="@+id/tv_feels_like"
@@ -182,7 +183,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="25dp"
-            android:backgroundTint="@color/semi_transparent"
+            android:backgroundTint="@color/main_background"
             app:cardCornerRadius="10dp"
             app:cardElevation="8dp"
             app:layout_constraintBottom_toTopOf="@+id/glMainCard"
@@ -193,7 +194,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/semi_transparent"
+                android:background="@color/main_background"
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp">
 

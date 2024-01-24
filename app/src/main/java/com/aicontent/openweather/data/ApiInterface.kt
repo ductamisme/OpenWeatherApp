@@ -1,5 +1,7 @@
 package com.aicontent.openweather.data
 
+import com.aicontent.openweather.model.coutry.Country
+import com.aicontent.openweather.model.coutry.CountryItem
 import com.aicontent.openweather.model.currentWeather.CurrentWeatherModel
 import com.aicontent.openweather.model.forecast.ForecastModel
 import com.aicontent.openweather.model.pollution.PollutionModel
@@ -30,4 +32,8 @@ interface ApiInterface {
         @Query("units") units : String,
         @Query("appid") apiKey : String,
     ) : Response<PollutionModel>
+
+
+    @GET("all")
+    suspend fun getAllCountry() : Response<CountryItem>
 }

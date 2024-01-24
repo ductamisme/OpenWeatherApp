@@ -7,9 +7,10 @@
 
 
     <androidx.cardview.widget.CardView
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="8dp"
+        android:layout_marginTop="4dp"
         app:cardElevation="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,7 +26,7 @@
                 android:id="@+id/tv_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Ha Noi"
+                android:text="@string/ha_noi"
                 android:textSize="25sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -57,22 +58,31 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/tv_High"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:text="H:27  L:16"
-                app:layout_constraintBottom_toBottomOf="parent"/>
-
+                android:layout_marginEnd="4dp"
+                android:text="H:27"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tv_low" />
 
             <TextView
+                android:id="@+id/tv_low"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/currentState"
-                app:layout_constraintStart_toStartOf="@id/tv_location"
-                app:layout_constraintTop_toBottomOf="@id/tv_Time"
+                android:text="L:16"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_currentState"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="Mostly Sunny"/>
+                android:text="Mostly Sunny"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/tv_location"
+                app:layout_constraintTop_toBottomOf="@id/tv_Time" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

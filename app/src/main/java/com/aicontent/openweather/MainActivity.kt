@@ -1,11 +1,15 @@
 package com.aicontent.openweather
 
-import android.content.ContentValues.TAG
+import android.annotation.SuppressLint
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.aicontent.openweather.databinding.ActivityMainBinding
 import com.aicontent.openweather.search.Search
@@ -19,11 +23,36 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var auth: FirebaseAuth
+    private var broadcast = BroadcastReceiverAirPlane()
 
+    private val connectivityReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            if ("com.example.CONNECTIVITY_CHANGE" == intent?.action) {
+                val isConnected = intent.getBooleanExtra("is_connected", false)
+
+                if (isConnected) {
+                    // Handle online state
+                    Toast.makeText(this@MainActivity, "Online", Toast.LENGTH_LONG).show()
+                } else {
+                    // Handle offline state
+                    Toast.makeText(this@MainActivity, "Offline", Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // Register the receiver dynamically in onCreate
+        registerReceiver(
+            connectivityReceiver,
+            IntentFilter("com.example.CONNECTIVITY_CHANGE")
+        )
+//        val filter = IntentFilter()
+//        filter.addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED)
+//        this.registerReceiver(broadcast, filter)
 
         replaceFragment(CityWeatherFragment())
 
@@ -32,12 +61,22 @@ class MainActivity : AppCompatActivity() {
                 R.id.home -> replaceFragment(CityWeatherFragment())
                 R.id.profile -> replaceFragment(Profile())
                 R.id.settings -> replaceFragment(Search())
+//                R.id.settings -> {
+//                    val i = Intent(Intent.ACTION_VIEW, Uri.parse("http://tuhoc.cc"))
+//                    startActivity(i)
+//                }
                 else -> {
                 }
             }
             true
         }
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        // Unregister the receiver in onDestroy to avoid memory leaks
+        unregisterReceiver(connectivityReceiver)
     }
 
     override fun onStart() {
@@ -200,7 +239,7 @@ class MainActivity : AppCompatActivity() {
         private const val TAG = "MainActivity"
     }
 
-    private fun replaceFragment(fragment: Fragment) {
+     private fun replaceFragment(fragment: Fragment) {
 
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()

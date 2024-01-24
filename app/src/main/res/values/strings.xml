@@ -50,6 +50,12 @@
     <string name="full_name">Full Name</string>
     <string name="email">Email</string>
     <string name="comfirm_password">Comfirm Password</string>
+    <string name="weather">Weather</string>
+    <string name="forecast_time">forecast time</string>
+    <string name="temperature">Temperature</string>
+    <string name="ha_noi">Ha Noi</string>
+    <string name="i_love_vietnam">i love vietnam</string>
+    <string name="viet_nam">viet nam</string>
 
 
     <style name="Theme.LoginAndSignUp" parent="Theme.MaterialComponents.DayNight.NoActionBar">

@@ -20,6 +20,12 @@
             android:name=".MainActivity"
             android:exported="true">
 
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+
         </activity>
 
         <activity
@@ -40,6 +46,25 @@
             android:exported="true">
 
         </activity>
+
+        <!-- In AndroidManifest.xml -->
+        <receiver
+            android:name=".ConnectivityReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
+        <!--        <receiver-->
+<!--            android:name=".BroadcastReceiverAirPlane"-->
+<!--            android:exported="true">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.AIRPLANE_MODE" />-->
+<!--            </intent-filter>-->
+<!--        </receiver>-->
+
     </application>
 
 </manifest>

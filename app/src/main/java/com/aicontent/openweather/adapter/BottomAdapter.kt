@@ -1,5 +1,6 @@
 package com.aicontent.openweather.adapter
 
+import android.annotation.SuppressLint
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -32,6 +33,7 @@ class BottomAdapter(private val forecastArray: ArrayList<ForecastData>) :
         return forecastArray.size
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem = forecastArray[position]
         holder.binding.apply {
@@ -47,11 +49,8 @@ class BottomAdapter(private val forecastArray: ArrayList<ForecastData>) :
     }
 
     private fun displayTime(dtTxt: String): CharSequence? {
-        val input = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        val input =
             DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
-        } else {
-            TODO("VERSION.SDK_INT < O")
-        }
         val output = DateTimeFormatter.ofPattern("MM-dd HH:mm")
         val dateTime = LocalDateTime.parse(dtTxt, input)
         return output.format(dateTime)
